@@ -1,0 +1,19 @@
+﻿@model IEnumerable<TrainingApp.Core.TrainingCategory>
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1>Welcome</h1>
+
+
+<p>Check out our test questions!</p>
+
+@foreach (var item in Model)
+{
+    <div>
+        @Html.ActionLink(item.Category,"Index","Question",new{category = item.Category},new{@class="btn btn-primary btn-large"})
+    </div>
+    
+}

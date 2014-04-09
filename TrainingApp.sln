@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingApp.Web", "TrainingApp.Web\TrainingApp.Web.csproj", "{E69E0461-B561-467F-AD3E-314D78F2F675}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingApp.GitHubService", "TrainingApp.GitHubService\TrainingApp.GitHubService.csproj", "{3E2AC85E-581A-4E11-BC54-9A1DB46171E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingApp.Core", "TrainingApp.Core\TrainingApp.Core.csproj", "{721B9C06-A3B4-43C0-828E-F75148824B49}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E69E0461-B561-467F-AD3E-314D78F2F675}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E69E0461-B561-467F-AD3E-314D78F2F675}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E69E0461-B561-467F-AD3E-314D78F2F675}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E69E0461-B561-467F-AD3E-314D78F2F675}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E2AC85E-581A-4E11-BC54-9A1DB46171E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E2AC85E-581A-4E11-BC54-9A1DB46171E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E2AC85E-581A-4E11-BC54-9A1DB46171E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E2AC85E-581A-4E11-BC54-9A1DB46171E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{721B9C06-A3B4-43C0-828E-F75148824B49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{721B9C06-A3B4-43C0-828E-F75148824B49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{721B9C06-A3B4-43C0-828E-F75148824B49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{721B9C06-A3B4-43C0-828E-F75148824B49}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

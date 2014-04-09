@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TrainingApp.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="TrainingAppStoreContainer">
+    <EntitySet Name="Questions" EntityType="TrainingApp.Store.Questions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TrainingCategories" EntityType="TrainingApp.Store.TrainingCategories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Interviews" EntityType="TrainingApp.Store.Interviews" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="InterviewQuestions" EntityType="TrainingApp.Store.InterviewQuestions" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="QuestionTrainingCategory" Association="TrainingApp.Store.QuestionTrainingCategory">
+      <End Role="Question" EntitySet="Questions" />
+      <End Role="TrainingCategory" EntitySet="TrainingCategories" />
+    </AssociationSet>
+    <AssociationSet Name="InterviewInterviewQuestion" Association="TrainingApp.Store.InterviewInterviewQuestion">
+      <End Role="Interview" EntitySet="Interviews" />
+      <End Role="InterviewQuestion" EntitySet="InterviewQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="QuestionInterviewQuestion" Association="TrainingApp.Store.QuestionInterviewQuestion">
+      <End Role="Question" EntitySet="Questions" />
+      <End Role="InterviewQuestion" EntitySet="InterviewQuestions" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Questions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QuestionText" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProjectName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Revision" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TrainingCategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TrainingCategories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Interviews">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InterviewQuestions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InterviewId" Type="int" Nullable="false" />
+    <Property Name="QuestionId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="QuestionTrainingCategory">
+    <End Role="Question" Type="TrainingApp.Store.Questions" Multiplicity="*" />
+    <End Role="TrainingCategory" Type="TrainingApp.Store.TrainingCategories" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="TrainingCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="TrainingCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InterviewInterviewQuestion">
+    <End Role="Interview" Type="TrainingApp.Store.Interviews" Multiplicity="1" />
+    <End Role="InterviewQuestion" Type="TrainingApp.Store.InterviewQuestions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Interview">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InterviewQuestion">
+        <PropertyRef Name="InterviewId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="QuestionInterviewQuestion">
+    <End Role="Question" Type="TrainingApp.Store.Questions" Multiplicity="1" />
+    <End Role="InterviewQuestion" Type="TrainingApp.Store.InterviewQuestions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InterviewQuestion">
+        <PropertyRef Name="QuestionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="TrainingApp" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="TrainingAppContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Questions" EntityType="TrainingApp.Question" />
+          <EntitySet Name="TrainingCategories" EntityType="TrainingApp.TrainingCategory" />
+          <AssociationSet Name="QuestionTrainingCategory" Association="TrainingApp.QuestionTrainingCategory">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="TrainingCategory" EntitySet="TrainingCategories" />
+          </AssociationSet>
+          <EntitySet Name="Interviews" EntityType="TrainingApp.Interview" />
+          <EntitySet Name="InterviewQuestions" EntityType="TrainingApp.InterviewQuestion" />
+          <AssociationSet Name="InterviewInterviewQuestion" Association="TrainingApp.InterviewInterviewQuestion">
+            <End Role="Interview" EntitySet="Interviews" />
+            <End Role="InterviewQuestion" EntitySet="InterviewQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="QuestionInterviewQuestion" Association="TrainingApp.QuestionInterviewQuestion">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="InterviewQuestion" EntitySet="InterviewQuestions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="QuestionText" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="ProjectName" Nullable="false" />
+          <Property Type="String" Name="Revision" Nullable="false" />
+          <NavigationProperty Name="TrainingCategory" Relationship="TrainingApp.QuestionTrainingCategory" FromRole="Question" ToRole="TrainingCategory" />
+          <Property Type="Int32" Name="TrainingCategoryId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrainingCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Category" Nullable="false" />
+          <NavigationProperty Name="Questions" Relationship="TrainingApp.QuestionTrainingCategory" FromRole="TrainingCategory" ToRole="Question" />
+        </EntityType>
+        <Association Name="QuestionTrainingCategory">
+          <End Type="TrainingApp.Question" Role="Question" Multiplicity="*" />
+          <End Type="TrainingApp.TrainingCategory" Role="TrainingCategory" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="TrainingCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="TrainingCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Interview">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="InterviewQuestions" Relationship="TrainingApp.InterviewInterviewQuestion" FromRole="Interview" ToRole="InterviewQuestion" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="user" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InterviewQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="InterviewId" Nullable="false" />
+          <NavigationProperty Name="Question" Relationship="TrainingApp.QuestionInterviewQuestion" FromRole="InterviewQuestion" ToRole="Question" />
+          <Property Type="Int32" Name="QuestionId" Nullable="false" />
+        </EntityType>
+        <Association Name="InterviewInterviewQuestion">
+          <End Type="TrainingApp.Interview" Role="Interview" Multiplicity="1" />
+          <End Type="TrainingApp.InterviewQuestion" Role="InterviewQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Interview">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InterviewQuestion">
+              <PropertyRef Name="InterviewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="QuestionInterviewQuestion">
+          <End Type="TrainingApp.Question" Role="Question" Multiplicity="1" />
+          <End Type="TrainingApp.InterviewQuestion" Role="InterviewQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InterviewQuestion">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TrainingAppStoreContainer" CdmEntityContainer="TrainingAppContainer">
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingApp.Question)">
+        <MappingFragment StoreEntitySet="Questions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="Revision" ColumnName="Revision" />
+          <ScalarProperty Name="TrainingCategoryId" ColumnName="TrainingCategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrainingCategories">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingApp.TrainingCategory)">
+        <MappingFragment StoreEntitySet="TrainingCategories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Interviews">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingApp.Interview)">
+        <MappingFragment StoreEntitySet="Interviews">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InterviewQuestions">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingApp.InterviewQuestion)">
+        <MappingFragment StoreEntitySet="InterviewQuestions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="InterviewId" ColumnName="InterviewId" />
+          <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

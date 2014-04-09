@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="99e2038ab3d94288ac3f6d61f7dc64dd" Name="Diagram1" >
+        <EntityTypeShape EntityType="TrainingApp.Question" Width="1.5" PointX="5" PointY="2" />
+        <EntityTypeShape EntityType="TrainingApp.TrainingCategory" Width="1.5" PointX="1.875" PointY="1.625" />
+        <AssociationConnector Association="TrainingApp.QuestionTrainingCategory" />
+        <EntityTypeShape EntityType="TrainingApp.Interview" Width="1.5" PointX="1.875" PointY="5.5" />
+        <EntityTypeShape EntityType="TrainingApp.InterviewQuestion" Width="1.5" PointX="4.625" PointY="5.375" />
+        <AssociationConnector Association="TrainingApp.InterviewInterviewQuestion" />
+        <AssociationConnector Association="TrainingApp.QuestionInterviewQuestion" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

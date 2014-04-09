@@ -1,0 +1,45 @@
+﻿@model TrainingApp.Web.Models.LoginModel
+
+@{
+    ViewBag.Title = "Log In";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+</hgroup>
+
+<section id="loginForm">
+
+    <div class="row">
+        @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+    
+            <fieldset>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(m => m.UserName)
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                        @Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+                    </div>
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Log in" />
+                @Html.ActionLink("Register", "Register", new { }, new { @class = "btn btn-default" })
+            </fieldset>
+
+        }
+    </div>
+</section>
+
+<section class="social" id="socialLoginForm">
+    <h2>Use another service to log in.</h2>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+</section>
